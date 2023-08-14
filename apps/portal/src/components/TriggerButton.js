@@ -1,5 +1,5 @@
 import React from 'react';
-import Frame from './Frame';
+import ShadowRoot from './ShadowRoot';
 import MemberGravatar from './common/MemberGravatar';
 import AppContext from '../AppContext';
 import {ReactComponent as UserIcon} from '../images/icons/user.svg';
@@ -230,7 +230,7 @@ export default class TriggerButton extends React.Component {
 
     renderFrameStyles() {
         const styles = `
-            :root {
+            :host {
                 --brandcolor: ${this.context.brandColor}
             }
         ` + TriggerButtonStyle;
@@ -259,9 +259,9 @@ export default class TriggerButton extends React.Component {
         }
 
         return (
-            <Frame dataTestId='portal-trigger-frame' className='gh-portal-triggerbtn-iframe' style={frameStyle} title="portal-trigger" head={this.renderFrameStyles()}>
+            <ShadowRoot dataTestId='portal-trigger-frame' className='gh-portal-triggerbtn-iframe' style={frameStyle} title="portal-trigger" head={this.renderFrameStyles()}>
                 <TriggerButtonContent isPopupOpen={showPopup} updateWidth={width => this.onWidthChange(width)} />
-            </Frame>
+            </ShadowRoot>
         );
     }
 }

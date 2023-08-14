@@ -1,5 +1,5 @@
 import React from 'react';
-import Frame from './Frame';
+import ShadowRoot from './ShadowRoot';
 import AppContext from '../AppContext';
 import NotificationStyle from './Notification.styles';
 import {ReactComponent as CloseIcon} from '../images/icons/close.svg';
@@ -216,7 +216,7 @@ export default class Notification extends React.Component {
 
     renderFrameStyles() {
         const styles = `
-            :root {
+            :host {
                 --brandcolor: ${this.context.brandColor}
             }
         ` + NotificationStyle;
@@ -236,9 +236,9 @@ export default class Notification extends React.Component {
         const {type, status, autoHide, duration} = this.state;
         if (type && status) {
             return (
-                <Frame style={frameStyle} title="portal-notification" head={this.renderFrameStyles()} className='gh-portal-notification-iframe' >
+                <ShadowRoot style={frameStyle} title="portal-notification" head={this.renderFrameStyles()} className='gh-portal-notification-iframe' >
                     <NotificationContent {...{type, status, autoHide, duration}} onHideNotification={e => this.onHideNotification(e)} />
-                </Frame>
+                </ShadowRoot>
             );
         }
         return null;

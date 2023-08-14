@@ -1,5 +1,5 @@
 import React from 'react';
-import Frame from './Frame';
+import ShadowRoot from './ShadowRoot';
 import {hasMode} from '../utils/check-mode';
 import AppContext from '../AppContext';
 import {getFrameStyles} from './Frame.styles';
@@ -257,7 +257,7 @@ export default class PopupModal extends React.Component {
         const {site} = this.context;
         const FrameStyle = getFrameStyles({site});
         const styles = `
-            :root {
+            :host {
                 --brandcolor: ${this.context.brandColor}
             }
         ` + FrameStyle;
@@ -293,10 +293,10 @@ export default class PopupModal extends React.Component {
 
         return (
             <div style={Styles.modalContainer}>
-                <Frame style={frameStyle} title="portal-popup" head={this.renderFrameStyles()} dataTestId='portal-popup-frame'>
+                <ShadowRoot style={frameStyle} title="portal-popup" head={this.renderFrameStyles()} dataTestId='portal-popup-frame'>
                     <div className={className} onClick = {e => this.handlePopupClose(e)}></div>
                     <PopupContent isMobile={isMobile} />
-                </Frame>
+                </ShadowRoot>
             </div>
         );
     }

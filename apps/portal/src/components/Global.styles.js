@@ -1,7 +1,7 @@
 export const GlobalStyles = `
     /* Colors
     /* ----------------------------------------------------- */
-    :root {
+    :host {
         --black: #000;
         --blackrgb: 0,0,0;
         --grey0: #1d1d1d;
@@ -27,27 +27,18 @@ export const GlobalStyles = `
         --darkerRed: #C50202;
         --yellow: #FFDC15;
         --green: #7FC724;
-    }
 
-    /* Globals
-    /* ----------------------------------------------------- */
-    html {
         font-size: 62.5%;
-        height: 100%;
-    }
-
-    body {
-        margin: 0px;
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
         font-size: 1.6rem;
-        height: 100%;
         line-height: 1.6em;
         font-weight: 400;
         font-style: normal;
         color: var(--grey2);
-        box-sizing: border-box;
-        overflow: hidden;
     }
+
+    /* Globals
+    /* ----------------------------------------------------- */
 
     button,
     button span {
