@@ -2,6 +2,15 @@ import {Component} from 'react';
 import {createPortal} from 'react-dom';
 
 export default class Frame extends Component {
+    constructor(props) {
+        super(props);
+
+        this.srcUrl = URL.createObjectURL(new Blob(
+            ['<!DOCTYPE html><html><head></head><body></body></html>'],
+            { type: 'text/html'}
+        ));
+    }
+
     componentDidMount() {
         this.node.addEventListener('load', this.handleLoad);
     }
@@ -12,6 +21,7 @@ export default class Frame extends Component {
 
     componentWillUnmout() {
         this.node.removeEventListener('load', this.handleLoad);
+        URL.revokeObjectURL(this.srcUrl);
     }
 
     setupFrameBaseStyle() {
@@ -27,7 +37,7 @@ export default class Frame extends Component {
         const {children, head, title = '', style = {}, dataTestId = '', ...rest} = this.props;
         return (
             <iframe
-                srcDoc={`<!DOCTYPE html>`}
+                src={this.srcUrl}
                 data-testid={dataTestId}
                 ref={node => (this.node = node)}
                 title={title}
